@@ -1,6 +1,6 @@
 <?php
 
-namespace Msi\Bundle\CmfBundle\Entity;
+namespace Msi\Bundle\UserBundle\Entity;
 
 use FOS\UserBundle\Entity\Group as BaseGroup;
 use Doctrine\ORM\Mapping as ORM;
