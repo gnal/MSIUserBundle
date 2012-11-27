@@ -2,6 +2,7 @@
 
 namespace Msi\Bundle\UserBundle\Admin;
 
+use Msi\Bundle\CmfBundle\Admin\Admin;
 use Msi\Bundle\CmfBundle\Grid\GridBuilder;
 use Symfony\Component\Form\FormBuilder;
 
