@@ -1,0 +1,57 @@
+{% extends 'MsiCmfBundle::layout.html.twig' %}
+
+{% block title %}{{ 'Login'|trans }}{{ parent() }}{% endblock title %}
+
+{% block body %}
+<div id="body">
+    <div class="container" style="width: 380px;">
+        <div class="row">
+            <div class="span5">
+                <div class="inner text-center">
+                    <h1>{{ block('brand') }}</h1>
+                    <hr>
+                    {% block content %}
+                    <div style="min-height: 186px;background: url(/bundles/msicmf/img/ajax-loader.gif) center center no-repeat #fff">
+                        <form style="background: #fff; margin-bottom: 0;" action="{{ path("fos_user_security_check") }}" method="POST">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+                            <input class="span4" placeholder="{{ 'Username'|trans }}" type="text" id="username" name="_username" value="{{ last_username }}" />
+
+                            <div class="input-append">
+                                <input class="span4" placeholder="{{ 'Password'|trans }}" {% if error %}style="border-color: #b94a48;"{% endif %} type="password" id="password" name="_password" />
+                                <span class="add-on"><a href="{{ path('fos_user_resetting_request') }}" rel="tooltip" data-original-title="{{ 'security.login.forgot_password'|trans }}"><strong>?</strong></a></span>
+                            </div>
+
+                            <label class="checkbox" for="remember_me">
+                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                            </label>
+
+                            <input class="btn btn-primary btn-large" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+                        </form>
+                    </div>
+                    {% endblock content %}
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block css %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('bundles/msicmf/css/login.css') }}">
+{% endblock css %}
+
+{% block js %}
+{{ parent() }}
+<script>
+    var $form = $('form');
+    $form.on('submit', function(e) {
+        $form.hide();
+    });
+
+    $('a[rel=tooltip]').tooltip()
+</script>
+{% endblock %}
