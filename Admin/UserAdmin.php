@@ -18,6 +18,7 @@ class UserAdmin extends Admin
     public function buildGrid(GridBuilder $builder)
     {
         $builder
+            ->add('enabled', 'boolean')
             ->add('username')
             ->add('email')
             ->add('lastLogin', 'date')
