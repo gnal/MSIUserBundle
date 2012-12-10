@@ -5,3 +5,9 @@ entity:
 security:
     login:
         forgot_password: Mot de passe oublié?
+
+Change password: Changer mot de passe
+Edit my profile: Modifier mon profil
+Change my password: Changer mon mot de passe
+Username: Nom d'utilisateur
+Password: Mot de passe
