@@ -5,3 +5,6 @@ entity:
 security:
     login:
         forgot_password: Forgot password?
+
+Username: Username
+Password: Password
