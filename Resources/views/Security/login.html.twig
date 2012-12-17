@@ -1,4 +1,4 @@
-{% extends 'MsiCmfBundle::layout.html.twig' %}
+{% extends 'MsiCmfBundle:Page:layout.html.twig' %}
 
 {% block title %}{{ 'Login'|trans }}{{ parent() }}{% endblock title %}
 
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="span5">
                 <div class="inner text-center">
-                    <h1>{{ block('brand') }}</h1>
+                    <h1>{{ site.brand }}</h1>
                     <hr>
                     {% block content %}
                     <div style="min-height: 186px;background: url(/bundles/msicmf/img/ajax-loader.gif) center center no-repeat #fff">
