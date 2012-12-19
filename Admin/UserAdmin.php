@@ -12,6 +12,7 @@ class UserAdmin extends Admin
     {
         $this->options = array(
             'search_fields' => array('a.username', 'a.email'),
+            'form_template' => 'MsiUserBundle:User:form.html.twig',
         );
     }
 
@@ -19,6 +20,12 @@ class UserAdmin extends Admin
     {
         $builder
             ->add('enabled', 'boolean')
+            ->add('locked', 'boolean', array(
+                'label' => 'Banned',
+                'icon_true' => 'icon-ban-circle',
+                'icon_false' => 'icon-ban-circle',
+                'badge_true' => 'badge-important',
+            ))
             ->add('username')
             ->add('email')
             ->add('lastLogin', 'date')
@@ -29,18 +36,16 @@ class UserAdmin extends Admin
     public function buildForm(FormBuilder $builder)
     {
         $builder
+            ->add('enabled')
             ->add('username')
             ->add('email')
-        ;
-
-        if ($this->getAction() !== 'edit') {
-            $builder->add('plainPassword', 'repeated', array(
+            ->add('plainPassword', 'repeated', array(
                 'type' => 'password',
-                'options' => array('translation_domain' => 'FOSUserBundle'),
                 'first_options' => array('label' => 'Password'),
                 'second_options' => array('label' => 'Confirm Password'),
-            ));
-        }
+            ))
+            ->add('locked')
+        ;
 
         if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN') || $this->container->get('security.context')->isGranted('ROLE_MSI_USER_GROUP_ADMIN_UPDATE')) {
             $builder->add('groups', 'entity', array(
