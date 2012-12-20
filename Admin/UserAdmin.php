@@ -44,7 +44,9 @@ class UserAdmin extends Admin
                 'first_options' => array('label' => 'Password'),
                 'second_options' => array('label' => 'Confirm Password'),
             ))
-            ->add('locked')
+            ->add('locked', 'checkbox', array(
+                'label' => 'Banned',
+            ))
         ;
 
         if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN') || $this->container->get('security.context')->isGranted('ROLE_MSI_USER_GROUP_ADMIN_UPDATE')) {
