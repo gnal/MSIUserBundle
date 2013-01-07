@@ -5,6 +5,7 @@ namespace Msi\Bundle\UserBundle\Admin;
 use Msi\Bundle\CmfBundle\Admin\Admin;
 use Msi\Bundle\CmfBundle\Grid\GridBuilder;
 use Symfony\Component\Form\FormBuilder;
+use Doctrine\ORM\EntityRepository;
 
 class UserAdmin extends Admin
 {
@@ -54,6 +55,15 @@ class UserAdmin extends Admin
             'expanded' => true,
             'multiple' => true,
             'required' => false,
+            'query_builder' => function(EntityRepository $er) {
+                $qb = $er->createQueryBuilder('a')->addOrderBy('a.name', 'ASC');
+
+                if (!$this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
+                    $qb->andWhere($qb->expr()->neq('a.name', ':tokenblabla'))->setParameter('tokenblabla', 'super admin');
+                }
+
+                return $qb;
+            },
         ));
 
         if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {

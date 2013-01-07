@@ -15,7 +15,9 @@
     </div>
     <div class="tab-pane fade" id="advanced">
         {{ form_row(form.groups) }}
-        {{ form_row(form.roles) }}
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+            {{ form_row(form.roles) }}
+        {% endif %}
     </div>
 </div>
 
