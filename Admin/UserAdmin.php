@@ -49,34 +49,34 @@ class UserAdmin extends Admin
             ))
         ;
 
-        if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN') || $this->container->get('security.context')->isGranted('ROLE_MSI_USER_GROUP_ADMIN_UPDATE')) {
-            $builder->add('groups', 'entity', array(
-                'class' => 'MsiUserBundle:Group',
-                'expanded' => true,
-                'multiple' => true,
-                'required' => false,
-            ));
+        $builder->add('groups', 'entity', array(
+            'class' => 'MsiUserBundle:Group',
+            'expanded' => true,
+            'multiple' => true,
+            'required' => false,
+        ));
+
+        if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
+            $roles = array();
+            $roles['ROLE_SUPER_ADMIN'] = 'super admin';
+            $roles['ROLE_ADMIN'] = 'admin';
+
+            foreach ($this->container->getParameter('msi_cmf.admin_ids') as $id) {
+                $label = $this->container->get($id)->getLabel(1, 'en');
+                $roles['ROLE_'.strtoupper($id).'_CREATE'] = $label.' | create';
+                $roles['ROLE_'.strtoupper($id).'_READ'] = $label.' | read';
+                $roles['ROLE_'.strtoupper($id).'_UPDATE'] = $label.' | update';
+                $roles['ROLE_'.strtoupper($id).'_DELETE'] = $label.' | delete';
+            }
+
+            $builder
+                ->add('roles', 'choice', array(
+                    'choices' => $roles,
+                    'expanded' => true,
+                    'multiple' => true,
+                    'required' => false,
+                ))
+            ;
         }
-
-        $roles = array();
-        $roles['ROLE_SUPER_ADMIN'] = 'super admin';
-        $roles['ROLE_ADMIN'] = 'admin';
-
-        foreach ($this->container->getParameter('msi_cmf.admin_ids') as $id) {
-            $label = $this->container->get($id)->getLabel(1, 'en');
-            $roles['ROLE_'.strtoupper($id).'_CREATE'] = $label.' | create';
-            $roles['ROLE_'.strtoupper($id).'_READ'] = $label.' | read';
-            $roles['ROLE_'.strtoupper($id).'_UPDATE'] = $label.' | update';
-            $roles['ROLE_'.strtoupper($id).'_DELETE'] = $label.' | delete';
-        }
-
-        $builder
-            ->add('roles', 'choice', array(
-                'choices' => $roles,
-                'expanded' => true,
-                'multiple' => true,
-                'required' => false,
-            ))
-        ;
     }
 }
