@@ -14,7 +14,7 @@ services:
 
     # Group
     msi_user_group_admin:
-        class: Msi\Bundle\UserBundle\Admin\GroupAdmin
+        class: Msi\UserBundle\Admin\GroupAdmin
         arguments: [ @msi_user.group_manager ]
         parent: msi_cmf.admin
         tags:

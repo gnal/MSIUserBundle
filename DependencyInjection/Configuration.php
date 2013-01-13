@@ -1,6 +1,6 @@
 <?php
 
-namespace Msi\Bundle\UserBundle\DependencyInjection;
+namespace Msi\UserBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -17,7 +17,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('user_admin_class')
                     ->cannotBeEmpty()
-                    ->defaultValue('Msi\Bundle\UserBundle\Admin\UserAdmin')
+                    ->defaultValue('Msi\UserBundle\Admin\UserAdmin')
                 ->end()
             ->end();
 
