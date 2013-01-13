@@ -9,7 +9,7 @@
         }
     ],
     "autoload": {
-        "psr-0": { "Msi\\Bundle\\UserBundle": "" }
+        "psr-0": { "Msi\\UserBundle": "" }
     },
-    "target-dir": "Msi/Bundle/UserBundle"
+    "target-dir": "Msi/UserBundle"
 }
