@@ -11,22 +11,22 @@ class UserAdmin extends Admin
 {
     public function configure()
     {
-        $this->options = array(
-            'search_fields' => array('a.username', 'a.email'),
+        $this->options = [
+            'search_fields' => ['a.id', 'a.username', 'a.email'],
             'form_template' => 'MsiUserBundle:User:form.html.twig',
-        );
+        ];
     }
 
     public function buildGrid(GridBuilder $builder)
     {
         $builder
             ->add('enabled', 'boolean')
-            ->add('locked', 'boolean', array(
+            ->add('locked', 'boolean', [
                 'label' => 'Banned',
                 'icon_true' => 'icon-ban-circle',
                 'icon_false' => 'icon-ban-circle',
                 'badge_true' => 'badge-important',
-            ))
+            ])
             ->add('username')
             ->add('email')
             ->add('lastLogin', 'date')
@@ -40,17 +40,17 @@ class UserAdmin extends Admin
             ->add('enabled')
             ->add('username')
             ->add('email')
-            ->add('plainPassword', 'repeated', array(
+            ->add('plainPassword', 'repeated', [
                 'type' => 'password',
-                'first_options' => array('label' => 'Password'),
-                'second_options' => array('label' => 'Confirm Password'),
-            ))
-            ->add('locked', 'checkbox', array(
+                'first_options' => ['label' => 'Password'],
+                'second_options' => ['label' => 'Confirm Password'],
+            ])
+            ->add('locked', 'checkbox', [
                 'label' => 'Banned',
-            ))
+            ])
         ;
 
-        $builder->add('groups', 'entity', array(
+        $builder->add('groups', 'entity', [
             'class' => 'MsiUserBundle:Group',
             'expanded' => true,
             'multiple' => true,
@@ -64,10 +64,10 @@ class UserAdmin extends Admin
 
                 return $qb;
             },
-        ));
+        ]);
 
         if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
-            $roles = array();
+            $roles = [];
             $roles['ROLE_SUPER_ADMIN'] = 'super admin';
             $roles['ROLE_ADMIN'] = 'admin';
 
@@ -80,12 +80,12 @@ class UserAdmin extends Admin
             }
 
             $builder
-                ->add('roles', 'choice', array(
+                ->add('roles', 'choice', [
                     'choices' => $roles,
                     'expanded' => true,
                     'multiple' => true,
                     'required' => false,
-                ))
+                ])
             ;
         }
     }

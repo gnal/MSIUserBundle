@@ -22,7 +22,7 @@ class GroupAdmin extends Admin
             ->add('name')
         ;
 
-        $roles = array();
+        $roles = [];
         $roles['ROLE_SUPER_ADMIN'] = 'super admin';
         $roles['ROLE_ADMIN'] = 'admin';
 
@@ -35,12 +35,12 @@ class GroupAdmin extends Admin
         }
 
         $builder
-            ->add('roles', 'choice', array(
+            ->add('roles', 'choice', [
                 'choices' => $roles,
                 'expanded' => true,
                 'multiple' => true,
                 'required' => false,
-            ))
+            ])
         ;
     }
 }
