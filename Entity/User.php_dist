@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
- * @ORM\Table(name="user_user")
  * @ORM\Entity
  */
 class User extends BaseUser
@@ -21,18 +20,32 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Group")
-     * @ORM\JoinTable(name="user_users_groups",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="Msi\UserBundle\Entity\Group")
      */
     protected $groups;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Msi\UserBundle\Entity\Group")
+     */
+    protected $operators;
 
     public function __construct()
     {
         parent::__construct();
         $this->groups = new ArrayCollection();
+        $this->operators = new ArrayCollection();
+    }
+
+    public function getOperators()
+    {
+        return $this->operators;
+    }
+
+    public function setOperators($operators)
+    {
+        $this->operators = $operators;
+
+        return $this;
     }
 
     public function getGroups()

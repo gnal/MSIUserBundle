@@ -6,6 +6,8 @@ use Msi\CmfBundle\Admin\Admin;
 use Msi\CmfBundle\Grid\GridBuilder;
 use Symfony\Component\Form\FormBuilder;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class UserAdmin extends Admin
 {
@@ -87,6 +89,22 @@ class UserAdmin extends Admin
                     'required' => false,
                 ])
             ;
+
+            $builder->add('operators', 'entity', [
+                'class' => 'MsiUserBundle:Group',
+                'multiple' => true,
+                'expanded' => true,
+            ]);
         }
+    }
+
+    public function buildListQuery(QueryBuilder $qb)
+    {
+        $qb->addOrderBy('a.username', 'ASC');
+    }
+
+    public function postLoad(ArrayCollection $collection)
+    {
+        $this->container->get('msi_cmf.bouncer')->operatorFilter($collection);
     }
 }

@@ -5,6 +5,7 @@ namespace Msi\UserBundle\Admin;
 use Msi\CmfBundle\Admin\Admin;
 use Msi\CmfBundle\Grid\GridBuilder;
 use Symfony\Component\Form\FormBuilder;
+use Doctrine\ORM\QueryBuilder;
 
 class GroupAdmin extends Admin
 {
@@ -42,5 +43,10 @@ class GroupAdmin extends Admin
                 'required' => false,
             ])
         ;
+    }
+
+    public function buildListQuery(QueryBuilder $qb)
+    {
+        $qb->addOrderBy('a.name', 'ASC');
     }
 }
