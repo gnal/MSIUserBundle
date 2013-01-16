@@ -24,7 +24,6 @@ class UserAdmin extends Admin
         $builder
             ->add('enabled', 'boolean')
             ->add('locked', 'boolean', [
-                'label' => 'Banned',
                 'icon_true' => 'icon-ban-circle',
                 'icon_false' => 'icon-ban-circle',
                 'badge_true' => 'badge-important',
