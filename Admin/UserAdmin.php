@@ -46,9 +46,7 @@ class UserAdmin extends Admin
                 'first_options' => ['label' => 'Password'],
                 'second_options' => ['label' => 'Confirm Password'],
             ])
-            ->add('locked', 'checkbox', [
-                'label' => 'Banned',
-            ])
+            ->add('locked', 'checkbox')
         ;
 
         $builder->add('groups', 'entity', [
