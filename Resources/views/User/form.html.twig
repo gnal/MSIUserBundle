@@ -17,6 +17,7 @@
     <div class="tab-pane fade" id="acl">
         {{ form_row(form.operators) }}
     </div>
+    {% endif %}
     <div class="tab-pane fade active in" id="general">
         {{ form_row(form.enabled) }}
         {{ form_row(form.username) }}
@@ -26,5 +27,4 @@
 
         {{ form_rest(form) }}
     </div>
-    {% endif %}
 </div>
