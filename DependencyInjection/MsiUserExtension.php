@@ -16,6 +16,7 @@ class MsiUserExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('admin.yml');
+        $loader->load('services.yml');
 
         $this->registerConfiguration($config, $container);
     }
