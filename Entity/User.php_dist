@@ -36,6 +36,14 @@ class User extends BaseUser
         $this->operators = new ArrayCollection();
     }
 
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        $this->username = $email;
+
+        return $this;
+    }
+
     public function getOperators()
     {
         return $this->operators;
