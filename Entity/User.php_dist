@@ -20,6 +20,11 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $locale;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Msi\UserBundle\Entity\Group")
      */
     protected $groups;
@@ -34,6 +39,18 @@ class User extends BaseUser
         parent::__construct();
         $this->groups = new ArrayCollection();
         $this->operators = new ArrayCollection();
+    }
+
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+
+        return $this;
     }
 
     public function setEmail($email)

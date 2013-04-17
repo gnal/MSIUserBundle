@@ -13,6 +13,16 @@ class ProfileType extends BaseType
         $builder
             // ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
+            ->add('locale', 'choice', [
+                'empty_value' => 'Default',
+                'empty_data' => null,
+                'choices' => [
+                    'fr' => 'FR',
+                    'en' => 'EN',
+                ],
+                'label' => 'Language',
+                'required'    => false,
+            ])
         ;
     }
 

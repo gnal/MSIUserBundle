@@ -28,7 +28,6 @@ class UserAdmin extends Admin
                 'icon_false' => 'icon-ban-circle',
                 'badge_true' => 'badge-important',
             ])
-            ->add('username')
             ->add('email')
             ->add('lastLogin', 'date')
             ->add('', 'action')
@@ -39,12 +38,21 @@ class UserAdmin extends Admin
     {
         $builder
             ->add('enabled')
-            ->add('username')
             ->add('email')
             ->add('plainPassword', 'repeated', [
                 'type' => 'password',
                 'first_options' => ['label' => 'Password'],
                 'second_options' => ['label' => 'Confirm Password'],
+            ])
+            ->add('locale', 'choice', [
+                'empty_value' => 'Default',
+                'empty_data' => null,
+                'choices' => [
+                    'fr' => 'FR',
+                    'en' => 'EN',
+                ],
+                'label' => 'Language',
+                'required'    => false,
             ])
             ->add('locked', 'checkbox')
         ;
