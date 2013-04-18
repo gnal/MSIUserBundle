@@ -10,6 +10,11 @@
                 <div class="inner">
                     <h1>{{ site.translation.brand }}</h1>
                     <hr>
+                    {% trans_default_domain 'FOSUserBundle' %}
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error|trans }}</div>
+                        <hr>
+                    {% endif %}
                     {% block content %}
                     <div style="min-height: 186px;background: url(/bundles/msicmf/img/ajax-loader.gif) center center no-repeat #fff">
                         <form style="background: #fff; margin-bottom: 0;" action="{{ path("fos_user_security_check") }}" method="POST">
