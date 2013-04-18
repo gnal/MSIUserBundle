@@ -3,42 +3,52 @@
 {% block title %}{{ 'Login'|trans }}{{ parent() }}{% endblock title %}
 
 {% block body %}
-<div id="body">
-    <div class="container" style="width: 380px;">
-        <div class="row">
-            <div class="span5">
-                <div class="inner">
-                    <h1>{{ site.translation.brand }}</h1>
-                    <hr>
-                    {% trans_default_domain 'FOSUserBundle' %}
-                    {% if error %}
-                        <div class="alert alert-danger">{{ error|trans }}</div>
-                        <hr>
-                    {% endif %}
-                    {% block content %}
-                    <div style="min-height: 186px;background: url(/bundles/msicmf/img/ajax-loader.gif) center center no-repeat #fff">
-                        <form style="background: #fff; margin-bottom: 0;" action="{{ path("fos_user_security_check") }}" method="POST">
-                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-
-                            <input class="span4" placeholder="{{ 'Username'|trans }}" type="text" id="username" name="_username" value="{{ last_username }}" />
-
-                            <div class="input-append">
-                                <input class="span4" placeholder="{{ 'Password'|trans }}" {% if error %}style="border-color: #b94a48;"{% endif %} type="password" id="password" name="_password" />
-                                <span class="add-on"><a href="{{ path('fos_user_resetting_request') }}" rel="tooltip" data-original-title="{{ 'security.login.forgot_password'|trans }}"><strong>?</strong></a></span>
-                            </div>
-
-                            <label class="checkbox" for="remember_me">
-                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                                {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
-                            </label>
-
-                            <input class="btn btn-primary btn-large" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
-                        </form>
+<div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            {% if block('brand')|length > 0 %}
+                <a class="brand" href="{{ path('msi_cmf_dashboard') }}">{{ block('brand') }}</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div id="sidebar"></div>
+    <div id="content">
+        <div id="overlay" style="display: none;">
+            <ul>
+              <li class="li1"></li>
+              <li class="li2"></li>
+              <li class="li3"></li>
+              <li class="li4"></li>
+              <li class="li5"></li>
+              <li class="li6"></li>
+            </ul>
+        </div>
+        <div class="god" style="display: none;">
+            {% trans_default_domain 'FOSUserBundle' %}
+            {% if error %}
+                <div class="alert alert-danger">{{ error|trans }}</div>
+            {% endif %}
+            <form action="{{ path("fos_user_security_check") }}" method="POST" class="well" style="width: 392px;">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                <label for="username">{{ 'Email'|trans }}</label>
+                <input class="span5" type="text" id="username" name="_username" value="{{ last_username }}" />
+                <label for="password">{{ 'Password'|trans }}</label>
+                    <input class="span5" type="password" id="password" name="_password" />
+                <div class="row-fluid">
+                    <div class="span6">
+                        <label class="checkbox" for="remember_me">
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                            {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                        </label>
                     </div>
-                    {% endblock content %}
-                    <div class="clear"></div>
+                    <div class="span6 text-right">
+                        <a href="{{ path('fos_user_resetting_request') }}">{{ 'Forgot password?'|trans }}</a>
+                    </div>
                 </div>
-            </div>
+                <input class="btn btn-large" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+            </form>
         </div>
     </div>
 </div>
@@ -55,8 +65,7 @@
     var $form = $('form');
     $form.on('submit', function(e) {
         $form.hide();
+        $('#overlay').show();
     });
-
-    $('a[rel=tooltip]').tooltip()
 </script>
 {% endblock %}
