@@ -9,3 +9,6 @@ security:
 Username: Username
 Password: Password
 Confirm Password: Confirm Password
+Summary: Summary
+Default: Default
+Language: Language
