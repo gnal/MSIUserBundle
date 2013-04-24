@@ -16,7 +16,7 @@
     <div id="sidebar">
     </div>
     <div id="content">
-        <div class="well" style="background: url(/bundles/msicmf/img/ajax-loader.gif) no-repeat center center #fff;width: 392px;min-height: 344px;">
+        <div class="well" style="background: url(/bundles/msicmf/img/ajax-loader.gif) no-repeat center center #fff;width: 392px;min-height: 362px;">
             {#<div id="overlay" style="display: none;margin: 122px auto auto;text-align: center;">
                 <ul>
                   <li class="li1"></li>
@@ -50,8 +50,9 @@
                         <a href="{{ path('fos_user_resetting_request') }}">{{ 'Forgot password?'|trans }}</a>
                     </div>
                 </div>
-                <hr>
-                <input class="btn btn-large" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+                <div class="form-actions" style="margin-bottom: 0;">
+                    <input class="btn btn-large" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+                </div>
             </form>
         </div>
     </div>
