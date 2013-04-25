@@ -28,7 +28,7 @@
                 </ul>
             </div>#}
             {% trans_default_domain 'FOSUserBundle' %}
-            <form action="{{ path("fos_user_security_check") }}" method="POST" style="background: #fff;margin-bottom: 0;">
+            <form action="{{ path('fos_user_security_check') }}" method="POST" style="background: #fff;margin-bottom: 0;">
                 <h2>{{ block('title') }}</h2>
                 <hr>
                 {% if error %}
