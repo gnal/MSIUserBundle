@@ -3,26 +3,33 @@
 {% block title %}{{ 'Sign In'|trans }}{{ parent() }}{% endblock title %}
 
 {% block body %}
+<div class="header">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span6">
+                <h1><a href="{{ path('msi_cmf_dashboard') }}">{{ block('brand') }}</a></h1>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
         <div class="container-fluid">
-            {% if block('brand')|length > 0 %}
-                <a class="brand" href="{{ path('msi_cmf_dashboard') }}">{{ block('brand') }}</a>
-            {% endif %}
+            <ul id="loader" class="hide">
+                <li class="li1"></li>
+                <li class="li2"></li>
+                <li class="li3"></li>
+                <li class="li4"></li>
+                <li class="li5"></li>
+                <li class="li6"></li>
+            </ul>
         </div>
     </div>
 </div>
 <div class="container-fluid">
-    <div id="main" style="padding: 20px;margin: 5px auto;background: url(/bundles/msicmf/img/ajax-loader.gif) no-repeat center center #fff;width: 392px;min-height: 244px;">
-        <div id="loader" style="position: absolute;left: 50%;top: 50%;margin-top: -41px;" class="text-center hide">
-            <div style="border-radius: 4px;color: #fff;border: 1px solid #000;width: 150px;padding: 20px 0;position: relative; left: -50%;background: url(http://bazz.ca/static/images/layout/black-transparent-bg.png);">
-                <img src="/bundles/msicmf/img/ajax-loader.gif" alt="0">
-                <br>
-                please wait...
-            </div>
-        </div>
+    <div id="main" style="padding: 20px;margin: 5px auto;background: #fff;width: 392px;min-height: 244px;">
         {% trans_default_domain 'FOSUserBundle' %}
-        <form action="{{ path('fos_user_security_check') }}" method="POST" style="background: #fff;margin-bottom: 0;">
+        <form action="{{ path('fos_user_security_check') }}" method="POST" style="margin-bottom: 0;">
             <h2>{{ block('title') }}</h2>
             {% if error %}
                 <div class="alert fade in alert-danger"><i class="icon-exclamation-sign"></i> {{ error|trans }}</div>
@@ -50,8 +57,7 @@
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="{{ asset('bundles/msicmf/css/admin.css') }}">
+{{ parent() }}
 <style type="text/css">
 form input[type="text"],
 form input[type="password"],
@@ -59,21 +65,4 @@ form input[type="password"],
     padding: 8px 12px;
 }
 </style>
-{{ parent() }}
-{% endblock %}
-
-{% block js %}
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-<script>
-(function($) {
-    "use strict";
-    var $form = $('form');
-    $form.on('submit', function(e) {
-        // $form.hide();
-        $('#loader').show();
-    });
-})(jQuery);
-</script>
-{{ parent() }}
 {% endblock %}
