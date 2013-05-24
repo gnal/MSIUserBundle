@@ -3,42 +3,19 @@
 {% block title %}{{ 'Sign In'|trans }}{{ parent() }}{% endblock title %}
 
 {% block body %}
-<div class="header">
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span6">
-                <h1><a href="{{ path('msi_cmf_dashboard') }}">{{ block('brand') }}</a></h1>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="navbar navbar-fixed-top navbar-inverse">
-    <div class="navbar-inner">
-        <div class="container-fluid">
-            <ul id="loader" class="hide">
-                <li class="li1"></li>
-                <li class="li2"></li>
-                <li class="li3"></li>
-                <li class="li4"></li>
-                <li class="li5"></li>
-                <li class="li6"></li>
-            </ul>
-        </div>
-    </div>
-</div>
 <div class="container-fluid">
-    <div id="main" style="padding: 20px;margin: 5px auto;background: #fff;width: 392px;min-height: 244px;">
+    <div id="main" style="padding: 20px;margin: 60px auto;background: #fff;width: 392px;min-height: 244px;">
         {% trans_default_domain 'FOSUserBundle' %}
         <form action="{{ path('fos_user_security_check') }}" method="POST" style="margin-bottom: 0;">
-            <h2>{{ block('title') }}</h2>
+            <h1>{{ block('brand') }}</h1>
             {% if error %}
                 <div class="alert fade in alert-danger"><i class="icon-exclamation-sign"></i> {{ error|trans }}</div>
             {% endif %}
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
             <label for="username">{{ 'Email'|trans }}</label>
-            <input class="span5" type="text" id="username" name="_username" value="{{ last_username }}" />
+            <input type="text" id="username" name="_username" value="{{ last_username }}" />
             <label for="password">{{ 'Password'|trans }}</label>
-                <input class="span5" type="password" id="password" name="_password" />
+                <input type="password" id="password" name="_password" />
             <div class="row-fluid">
                 <div class="span6">
                     <label class="checkbox" for="remember_me">
@@ -63,6 +40,7 @@ form input[type="text"],
 form input[type="password"],
 .input-append .add-on {
     padding: 8px 12px;
+    width: 368px;
 }
 </style>
 {% endblock %}
