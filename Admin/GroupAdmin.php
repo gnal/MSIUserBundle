@@ -9,6 +9,13 @@ use Doctrine\ORM\QueryBuilder;
 
 class GroupAdmin extends Admin
 {
+    public function configure()
+    {
+        $this->options = [
+            'search_fields' => ['a.id', 'a.name'],
+        ];
+    }
+
     public function buildGrid(GridBuilder $builder)
     {
         $builder
