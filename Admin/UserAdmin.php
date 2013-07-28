@@ -2,8 +2,8 @@
 
 namespace Msi\UserBundle\Admin;
 
-use Msi\CmfBundle\Admin\Admin;
-use Msi\CmfBundle\Grid\GridBuilder;
+use Msi\AdminBundle\Admin\Admin;
+use Msi\AdminBundle\Grid\GridBuilder;
 use Symfony\Component\Form\FormBuilder;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
@@ -16,6 +16,7 @@ class UserAdmin extends Admin
         $this->options = [
             'search_fields' => ['a.id', 'a.username', 'a.email'],
             'form_template' => 'MsiUserBundle:User:form.html.twig',
+            'sidebar_template' => 'MsiUserBundle:User:sidebar.html.twig',
         ];
     }
 
@@ -26,7 +27,7 @@ class UserAdmin extends Admin
             ->add('locked', 'boolean', [
                 'icon_true' => 'icon-ban-circle',
                 'icon_false' => 'icon-ban-circle',
-                'badge_true' => 'badge-important',
+                'btn_true' => 'label-danger',
             ])
             ->add('email')
             ->add('lastLogin', 'date')
@@ -78,7 +79,7 @@ class UserAdmin extends Admin
             $roles['ROLE_SUPER_ADMIN'] = 'super admin';
             $roles['ROLE_ADMIN'] = 'admin';
 
-            foreach ($this->container->getParameter('msi_cmf.admin_ids') as $id) {
+            foreach ($this->container->getParameter('msi_admin.admin_ids') as $id) {
                 $label = $this->container->get($id)->getLabel(1, 'en');
                 $roles['ROLE_'.strtoupper($id).'_CREATE'] = $label.' | create';
                 $roles['ROLE_'.strtoupper($id).'_READ'] = $label.' | read';
@@ -110,6 +111,6 @@ class UserAdmin extends Admin
 
     public function postLoad(ArrayCollection $collection)
     {
-        $this->container->get('msi_cmf.bouncer')->operatorFilter($collection);
+        $this->container->get('msi_admin.bouncer')->operatorFilter($collection);
     }
 }

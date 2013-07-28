@@ -2,8 +2,8 @@
 
 namespace Msi\UserBundle\Admin;
 
-use Msi\CmfBundle\Admin\Admin;
-use Msi\CmfBundle\Grid\GridBuilder;
+use Msi\AdminBundle\Admin\Admin;
+use Msi\AdminBundle\Grid\GridBuilder;
 use Symfony\Component\Form\FormBuilder;
 use Doctrine\ORM\QueryBuilder;
 
@@ -34,7 +34,7 @@ class GroupAdmin extends Admin
         $roles['ROLE_SUPER_ADMIN'] = 'super admin';
         $roles['ROLE_ADMIN'] = 'admin';
 
-        foreach ($this->container->getParameter('msi_cmf.admin_ids') as $id) {
+        foreach ($this->container->getParameter('msi_admin.admin_ids') as $id) {
             $label = $this->container->get($id)->getLabel(1, 'en');
             $roles['ROLE_'.strtoupper($id).'_CREATE'] = $label.' | create';
             $roles['ROLE_'.strtoupper($id).'_READ'] = $label.' | read';
