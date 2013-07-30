@@ -13,3 +13,9 @@ services:
         arguments: [ %fos_user.model.user.class% ]
         tags:
             - { name: form.type, alias: msi_user_profile }
+
+    msi_user.change_password.form.type:
+        class: Msi\UserBundle\Form\Type\ChangePasswordType
+        arguments: [ %fos_user.model.user.class% ]
+        tags:
+            - { name: form.type, alias: msi_user_change_password }

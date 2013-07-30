@@ -1,5 +1,5 @@
-<ul class="nav nav-tabs nav-stacked">
-    <li><a href="{{ path('fos_user_profile_show') }}">{{ 'Summary'|trans }}</a></li>
-<li><a href="{{ path('fos_user_profile_edit') }}">{{ 'Profile'|trans }}</a></li>
-<li><a href="{{ path('fos_user_change_password') }}">{{ 'Password'|trans }}</a></li>
+<ul class="nav nav-pills nav-stacked">
+    <li{% if app.request.pathInfo == path('fos_user_profile_show') %} class="active"{% endif %}><a href="{{ path('fos_user_profile_show') }}">{{ 'Summary'|trans }}</a></li>
+    <li{% if app.request.pathInfo == path('fos_user_profile_edit') %} class="active"{% endif %}><a href="{{ path('fos_user_profile_edit') }}">{{ 'Profile'|trans }}</a></li>
+    <li{% if app.request.pathInfo == path('fos_user_change_password') %} class="active"{% endif %}><a href="{{ path('fos_user_change_password') }}">{{ 'Password'|trans }}</a></li>
 </ul>

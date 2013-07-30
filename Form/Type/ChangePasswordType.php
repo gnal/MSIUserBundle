@@ -6,9 +6,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Security\Core\Validator\Constraint\UserPassword as OldUserPassword;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 
-use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
+use FOS\UserBundle\Form\Type\ChangePasswordFormType as BaseType;
 
-class ProfileType extends BaseType
+class ChangePasswordType extends BaseType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -19,8 +19,6 @@ class ProfileType extends BaseType
             $constraint = new OldUserPassword();
         }
 
-        $this->buildUserForm($builder, $options);
-
         $builder->add('current_password', 'password', array(
             'label' => 'form.current_password',
             'translation_domain' => 'FOSUserBundle',
@@ -30,31 +28,27 @@ class ProfileType extends BaseType
                 'class' => 'form-control',
             ],
         ));
-    }
-
-    protected function buildUserForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            // ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
-            ->add('email', 'email', array('attr' => ['class' => 'form-control'], 'label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
-            ->add('locale', 'choice', [
-                'empty_value' => 'Default',
-                'empty_data' => null,
-                'choices' => [
-                    'fr' => 'FR',
-                    'en' => 'EN',
-                ],
-                'label' => 'Language',
-                'required'    => false,
+        $builder->add('plainPassword', 'repeated', array(
+            'type' => 'password',
+            'options' => array('translation_domain' => 'FOSUserBundle'),
+            'first_options' => array(
+                'label' => 'form.new_password',
                 'attr' => [
-                    'class' => 'notchosen form-control',
+                    'class' => 'form-control',
                 ],
-            ])
-        ;
+            ),
+            'second_options' => array(
+                'label' => 'form.new_password_confirmation',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ),
+            'invalid_message' => 'fos_user.password.mismatch',
+        ));
     }
 
     public function getName()
     {
-        return 'msi_user_profile';
+        return 'msi_user_change_password';
     }
 }
