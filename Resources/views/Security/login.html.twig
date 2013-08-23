@@ -50,7 +50,7 @@
     var $form = $('form');
     $form.on('submit', function() {
         // $form.css('visibility', 'hidden');
-        $form.animate({opacity: 0}, 200);
+        $form.addClass('hide');
         $('#loader').removeClass('hide');
     });
 })(jQuery);
