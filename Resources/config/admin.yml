@@ -1,7 +1,7 @@
 services:
     # User
     msi_user_user_admin:
-        class: %msi_user.user_admin.class%
+        class: %msi_user.user.admin%
         arguments: [ @msi_user.user_manager ]
         parent: msi_admin.admin
         tags:

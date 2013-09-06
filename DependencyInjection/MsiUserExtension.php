@@ -23,6 +23,6 @@ class MsiUserExtension extends Extension
 
     private function registerConfiguration($config, ContainerBuilder $container)
     {
-        $container->setParameter('msi_user.user_admin.class', $config['user_admin_class']);
+        $container->setParameter('msi_user.user.admin', $config['user_admin']);
     }
 }

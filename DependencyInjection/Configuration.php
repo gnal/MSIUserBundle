@@ -15,7 +15,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('user_admin_class')
+                ->scalarNode('user_admin')
                     ->cannotBeEmpty()
                     ->defaultValue('Msi\UserBundle\Admin\UserAdmin')
                 ->end()
