@@ -1,6 +1,6 @@
 <?php
 
-namespace Msi\UserBundle\Entity;
+namespace Msi\UserBundle\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -8,17 +8,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 
 /**
- * @ORM\Entity
+ * @ORM\MappedSuperclass
  */
-class User extends BaseUser
+abstract class User extends BaseUser
 {
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
     /**
      * @ORM\Column(type="string", nullable=true)
      */
