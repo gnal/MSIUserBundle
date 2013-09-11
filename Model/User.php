@@ -12,6 +12,8 @@ use FOS\UserBundle\Model\User as BaseUser;
  */
 abstract class User extends BaseUser
 {
+    use \Msi\AdminBundle\Doctrine\Extension\Model\Timestampable;
+
     /**
      * @ORM\Column(type="string", nullable=true)
      */
