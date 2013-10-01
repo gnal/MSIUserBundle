@@ -23,7 +23,6 @@ class UserAdmin extends Admin
     public function buildGrid(GridBuilder $builder)
     {
         $builder
-            ->add('enabled', 'boolean')
             ->add('locked', 'boolean', [
                 'icon_true' => 'icon-ban-circle',
                 'icon_false' => 'icon-ban-circle',
@@ -38,7 +37,6 @@ class UserAdmin extends Admin
     public function buildForm(FormBuilder $builder)
     {
         $builder
-            ->add('enabled')
             ->add('email')
             ->add('plainPassword', 'repeated', [
                 'type' => 'password',
