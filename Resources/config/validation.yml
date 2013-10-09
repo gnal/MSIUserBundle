@@ -1,6 +1,8 @@
 FOS\UserBundle\Model\User:
     constraints:
-        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [email]
+            message: fos_user.email.already_used
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: username
     properties:
         username:

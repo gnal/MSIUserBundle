@@ -102,6 +102,11 @@ class UserAdmin extends Admin
         }
     }
 
+    public function prePersist($entity)
+    {
+        $entity->setEnabled(true);
+    }
+
     public function buildListQuery(QueryBuilder $qb)
     {
         $qb->addOrderBy('a.username', 'ASC');
