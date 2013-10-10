@@ -33,6 +33,8 @@ class GroupAdmin extends Admin
         $roles = [];
         $roles['ROLE_SUPER_ADMIN'] = 'super admin';
         $roles['ROLE_ADMIN'] = 'admin';
+        $roles['ROLE_MANAGER'] = 'manager';
+        $roles['ROLE_CLIENT'] = 'client';
 
         foreach ($this->container->getParameter('msi_admin.admin_ids') as $id) {
             $label = $this->container->get($id)->getLabel(1, 'en');
