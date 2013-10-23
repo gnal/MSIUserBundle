@@ -73,9 +73,7 @@ class UserAdmin extends Admin
         ]);
 
         if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
-            $roles = [];
-            $roles['ROLE_SUPER_ADMIN'] = 'super admin';
-            $roles['ROLE_ADMIN'] = 'admin';
+            $roles = $this->container->getParameter('msi_user.roles');
 
             foreach ($this->container->getParameter('msi_admin.admin_ids') as $id) {
                 $label = $this->container->get($id)->getLabel(1, 'en');

@@ -19,6 +19,11 @@ class Configuration implements ConfigurationInterface
                     ->cannotBeEmpty()
                     ->defaultValue('Msi\UserBundle\Admin\UserAdmin')
                 ->end()
+                ->arrayNode('roles')
+                    ->defaultValue([])
+                    ->useAttributeAsKey('name')
+                    ->prototype('scalar')->end()
+                ->end()
             ->end();
 
         return $treeBuilder;
