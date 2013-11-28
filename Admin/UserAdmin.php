@@ -30,7 +30,6 @@ class UserAdmin extends Admin
             ])
             ->add('email')
             ->add('lastLogin', 'date')
-            ->add('', 'action')
         ;
     }
 

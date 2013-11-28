@@ -20,7 +20,6 @@ class GroupAdmin extends Admin
     {
         $builder
             ->add('name')
-            ->add('', 'action')
         ;
     }
 
