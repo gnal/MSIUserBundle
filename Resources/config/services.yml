@@ -20,10 +20,10 @@ services:
         tags:
             - { name: form.type, alias: msi_user_change_password }
 
-    fos_facebook.user.login:
-        class: Msi\UserBundle\Security\User\Provider\FacebookProvider
-        arguments:
-            facebook: "@fos_facebook.api"
-            userManager: "@fos_user.user_manager"
-            validator: "@validator"
-            container: "@service_container"
+    # fos_facebook.user.login:
+    #     class: Msi\UserBundle\Security\User\Provider\FacebookProvider
+    #     arguments:
+    #         facebook: "@fos_facebook.api"
+    #         userManager: "@fos_user.user_manager"
+    #         validator: "@validator"
+    #         container: "@service_container"
