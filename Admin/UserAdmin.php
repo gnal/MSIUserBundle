@@ -72,24 +72,24 @@ class UserAdmin extends Admin
         ]);
 
         if ($this->container->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
-            $roles = $this->container->getParameter('msi_user.roles');
+            // $roles = $this->container->getParameter('msi_user.roles');
 
-            foreach ($this->container->getParameter('msi_admin.admin_ids') as $id) {
-                $label = $this->container->get($id)->getLabel(1, 'en');
-                $roles['ROLE_'.strtoupper($id).'_CREATE'] = $label.' | create';
-                $roles['ROLE_'.strtoupper($id).'_READ'] = $label.' | read';
-                $roles['ROLE_'.strtoupper($id).'_UPDATE'] = $label.' | update';
-                $roles['ROLE_'.strtoupper($id).'_DELETE'] = $label.' | delete';
-            }
+            // foreach ($this->container->getParameter('msi_admin.admin_ids') as $id) {
+            //     $label = $this->container->get($id)->getLabel(1, 'en');
+            //     $roles['ROLE_'.strtoupper($id).'_CREATE'] = $label.' | create';
+            //     $roles['ROLE_'.strtoupper($id).'_READ'] = $label.' | read';
+            //     $roles['ROLE_'.strtoupper($id).'_UPDATE'] = $label.' | update';
+            //     $roles['ROLE_'.strtoupper($id).'_DELETE'] = $label.' | delete';
+            // }
 
-            $builder
-                ->add('roles', 'choice', [
-                    'choices' => $roles,
-                    'expanded' => true,
-                    'multiple' => true,
-                    'required' => false,
-                ])
-            ;
+            // $builder
+            //     ->add('roles', 'choice', [
+            //         'choices' => $roles,
+            //         'expanded' => true,
+            //         'multiple' => true,
+            //         'required' => false,
+            //     ])
+            // ;
 
             $builder->add('operators', 'entity', [
                 'class' => 'MsiUserBundle:Group',
