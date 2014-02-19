@@ -5,9 +5,6 @@
         <fieldset>
             <legend>{{ 'Groups'|trans }}</legend>
             {{ form_row(form.groups) }}
-            {% if is_granted('ROLE_SUPER_ADMIN') %}
-                {{ form_row(form.roles) }}
-            {% endif %}
         </fieldset>
     </div>
     {% if app.user.isSuperAdmin %}
